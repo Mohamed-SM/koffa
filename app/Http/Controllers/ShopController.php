@@ -32,7 +32,7 @@ class ShopController extends Controller
      */
     public function create()
     {
-        //
+        return view('shops.create');
     }
 
     /**
@@ -43,7 +43,23 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validating fields
+        $this->validate($request, [
+            'title'=>'required|max:100',
+            'address' =>'required',
+            'description' =>'required',
+            ]);
+
+        $title = $request['title'];
+        $address = $request['address'];
+        $description = $request['description'];
+
+        $shop = Shop::create($request->only('title', 'address','description'));
+
+    //Display a successful message upon save
+        return redirect()->route('shops.index')
+            ->with('flash_message', 'Shop,
+             '. $shop->title.' created');
     }
 
     /**
@@ -54,7 +70,7 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
-        //
+        return view ('shops.show', compact('shop'));
     }
 
     /**
@@ -65,7 +81,7 @@ class ShopController extends Controller
      */
     public function edit(Shop $shop)
     {
-        //
+        return view('shops.edit', compact('shop'));
     }
 
     /**
@@ -77,7 +93,22 @@ class ShopController extends Controller
      */
     public function update(Request $request, Shop $shop)
     {
-        //
+        //Validating fields
+        $this->validate($request, [
+            'title'=>'required|max:100',
+            'address' =>'required',
+            'description' =>'required',
+            ]);
+
+        $shop->title = $request->input('title');
+        $shop->address = $request->input('address');
+        $shop->description = $request->input('description');
+        $shop->save();
+
+    //Display a successful message upon save
+        return redirect()->route('shops.show')
+            ->with('flash_message', 'Shop,
+             '. $shop->title.' updated');
     }
 
     /**
@@ -88,6 +119,11 @@ class ShopController extends Controller
      */
     public function destroy(Shop $shop)
     {
-        //
+        $shop->delete();
+
+        return redirect()->route('posts.index')
+            ->with('flash_message',
+             'shop successfully deleted');
+
     }
 }
