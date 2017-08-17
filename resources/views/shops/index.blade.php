@@ -9,7 +9,9 @@
                     @foreach ($shops as $shop)
                         <div class="panel-body">
                             <li style="list-style-type:disc">
-                                <a href="{{ route('shops.show', $shop->id ) }}"><b>{{ $shop->title }}</b><br>
+                                <a href="{{ route('shops.show', $shop->id ) }}">
+                                    <b>{{ $shop->title }}</b> 
+                                    : {{ $shop->address }} <br>
                                     <p class="teaser">
                                        {{  str_limit($shop->description, 100) }} {{-- Limit teaser to 100 characters --}}
                                     </p>

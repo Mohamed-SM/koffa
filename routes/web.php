@@ -25,4 +25,4 @@ Route::resource('roles', 'RoleController');
 
 Route::resource('permissions', 'PermissionController');
 
-Route::resource('Shops', 'shopController');
+Route::resource('shops', 'ShopController');
