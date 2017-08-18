@@ -7,9 +7,9 @@
 
     <div class="col-md-8 col-md-offset-2">
 
-        <h1>Edit Post</h1>
+        <h1>Edit Shop</h1>
         <hr>
-            {{ Form::model($post, array('route' => array('posts.update', $post->id), 'method' => 'PUT')) }}
+            {{ Form::model($shop, array('route' => array('shops.update', $shop->id), 'method' => 'PUT')) }}
             <div class="form-group">
             {{ Form::label('title', 'Title') }}
             {{ Form::text('title', null, array('class' => 'form-control')) }}<br>
@@ -19,12 +19,43 @@
 
             {{ Form::label('description', 'Description') }}
             {{ Form::textarea('description', null, array('class' => 'form-control')) }}<br>
-
+            <hr>
+            {{ Form::label('lat', 'Altitud') }}
+            {{ Form::text('lat', null, array('class' => 'form-control')) }}<br>
+            {{ Form::label('lng', 'Longitud') }}
+            {{ Form::text('lng', null, array('class' => 'form-control')) }}<br>
+            <hr>
+            <div id="map"></div>
+            <hr>
             {{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
 
             {{ Form::close() }}
     </div>
     </div>
 </div>
-
+<script type="text/javascript">
+    var map = new GMaps({
+      el: '#map',
+      lat: 35.0,
+      lng: 0.0,
+      zoom:8
+    });
+    map.setContextMenu({
+      control: 'map',
+      options: [{
+        title: 'Add marker',
+        name: 'add_marker',
+        action: function(e) {
+            this.removeMarkers();
+            $("#lat").val(e.latLng.lat());
+            $("#lng").val(e.latLng.lng());
+            this.addMarker({
+                lat: e.latLng.lat(),
+                lng: e.latLng.lng(),
+                title: '{{ $shop->title }}'
+            });
+        }
+      }]
+    });
+</script>
 @endsection

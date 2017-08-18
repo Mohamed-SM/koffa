@@ -10,13 +10,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5N2JGcG6Xty2TWmAjyaz_0ILtq7F1vKo" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.min.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 
     <!-- Scripts -->
     <script>
@@ -25,6 +27,14 @@
         ]) !!};
     </script>
     <script src="https://use.fontawesome.com/9712be8772.js"></script>
+        <style type="text/css">
+        #map {
+            border:1px solid red;
+            width: 100%;
+            height: 500px;
+        }
+
+    </style>
 </head>
 <body>
     <div id="app">
@@ -49,7 +59,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li><a href="{{ url('/home') }}">Home</a></li>
                         @if (!Auth::guest())
                             <li><a href="{{ route('shops.create') }}">New Article</a></li>
                          @endif
@@ -106,6 +116,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+
+
 </body>
 </html>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateShopsTable extends Migration
+class AddUserToShop extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateShopsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shops', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title');
-            $table->string('address');
-            $table->string('description');
+        Schema::table('shops', function($table) {
             $table->integer('user_id');
-            $table->timestamps();
         });
     }
+
+
+
 
     /**
      * Reverse the migrations.
@@ -30,6 +28,8 @@ class CreateShopsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shops');
+        Schema::table('shops', function($table) {
+            $table->dropColumn('user_id');
+        });
     }
 }

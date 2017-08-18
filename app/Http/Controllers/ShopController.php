@@ -54,7 +54,15 @@ class ShopController extends Controller
         $address = $request['address'];
         $description = $request['description'];
 
-        $shop = Shop::create($request->only('title', 'address','description'));
+        $shop = new Shop();
+        $shop->title = $title;
+        $shop->address = $address;
+        $shop->description = $description;
+        $shop->user_id = Auth::user()->id;
+
+        $shop->save();
+
+        //$shop = Shop::create($request->only('title', 'address','description'));
 
     //Display a successful message upon save
         return redirect()->route('shops.index')
@@ -103,10 +111,12 @@ class ShopController extends Controller
         $shop->title = $request->input('title');
         $shop->address = $request->input('address');
         $shop->description = $request->input('description');
+        $shop->lat = $request->input('lat');
+        $shop->lng = $request->input('lng');
         $shop->save();
 
     //Display a successful message upon save
-        return redirect()->route('shops.show')
+        return redirect()->route('shops.show',compact('shop'))
             ->with('flash_message', 'Shop,
              '. $shop->title.' updated');
     }

@@ -9,4 +9,14 @@ class Shop extends Model
     protected $fillable = [
         'title', 'address', 'description',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function location()
+    {
+        return $this->hasOne(Location::class);
+    }
 }
