@@ -39,7 +39,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    @if($shop->lat == null);
+    @if($shop->lat == null); //if the cords are null
     var map = new GMaps({
       el: '#map',
       lat: 35.0,

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Shop;
 use App\Categorie;
+use App\Service;
 use Illuminate\Http\Request;
 use Auth;
 use Session;

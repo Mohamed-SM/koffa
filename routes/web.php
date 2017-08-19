@@ -29,3 +29,5 @@ Route::resource('shops', 'ShopController');
 
 Route::resource('categories', 'CategorieController');
 
+Route::resource('services', 'ServiceController');
+

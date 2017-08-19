@@ -1,0 +1,1 @@
+<p id="koffa{{$service->id}}" >{{ $service->id .' '.$service->status }} <button disabled="disabled" onclick="pret({{$service->id}})" >pret</button>

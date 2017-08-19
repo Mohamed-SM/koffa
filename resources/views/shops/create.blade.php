@@ -12,7 +12,7 @@
     {{-- Using the Laravel HTML Form Collective to create our form --}}
         {{ Form::open(array('route' => 'shops.store')) }}
 
-        <div class="form-group">
+            <div class="form-group">
             {{ Form::label('title', 'Title') }}
             {{ Form::text('title', null, array('class' => 'form-control')) }}
             <br>
