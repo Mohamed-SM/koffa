@@ -18,8 +18,19 @@
     </div>
 
     <div class="form-group">
+        {{ Form::label('last_name', 'prenom') }}
+        {{ Form::text('last_name', '', array('class' => 'form-control')) }}
+    </div>
+
+
+    <div class="form-group">
         {{ Form::label('email', 'Email') }}
         {{ Form::email('email', '', array('class' => 'form-control')) }}
+    </div>
+
+    <div class="form-group">
+        {{ Form::label('phone', 'Phone') }}
+        {{ Form::text('phone', '', array('class' => 'form-control')) }}
     </div>
 
     <div class='form-group'>

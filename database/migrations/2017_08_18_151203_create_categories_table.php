@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddLocationToShop extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,18 @@ class AddLocationToShop extends Migration
      */
     public function up()
     {
+        Schema::create('categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->timestamps();
+        });
+
         Schema::table('shops', function($table) {
-            $table->string('lat')->nullable();
-            $table->string('lng')->nullable();
+            $table->string('categorie_id')->nullable();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -25,9 +32,9 @@ class AddLocationToShop extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('categories');
         Schema::table('shops', function($table) {
-            $table->dropColumn('lat');
-            $table->dropColumn('lng');
+            $table->dropColumn('categorie_id');
         });
     }
 }

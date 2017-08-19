@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Shop;
+use App\Categorie;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
@@ -20,8 +21,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $shops = Shop::orderby('id', 'desc')->paginate(5); //show only 5 items at a time in descending order
-
+        $shops = Shop::paginate(5); //show only 5 items at a time in descending order
         return view('shops.index', compact('shops'));
     }
 
@@ -32,7 +32,8 @@ class ShopController extends Controller
      */
     public function create()
     {
-        return view('shops.create');
+        $categories = Categorie::all()->pluck('title','id');
+        return view('shops.create',compact('categories'));
     }
 
     /**
@@ -50,21 +51,19 @@ class ShopController extends Controller
             'description' =>'required',
             ]);
 
-        $title = $request['title'];
-        $address = $request['address'];
-        $description = $request['description'];
-
         $shop = new Shop();
-        $shop->title = $title;
-        $shop->address = $address;
-        $shop->description = $description;
+        $shop->title = $request['title'];
+        $shop->address = $request['address'];
+        $shop->description = $request['description'];
+        $shop->categorie_id = $request['categorie'];
+        $shop->lat = $request['lat'];
+        $shop->lng = $request['lng'];
         $shop->user_id = Auth::user()->id;
-
         $shop->save();
 
         //$shop = Shop::create($request->only('title', 'address','description'));
 
-    //Display a successful message upon save
+        //Display a successful message upon save
         return redirect()->route('shops.index')
             ->with('flash_message', 'Shop,
              '. $shop->title.' created');
@@ -89,7 +88,8 @@ class ShopController extends Controller
      */
     public function edit(Shop $shop)
     {
-        return view('shops.edit', compact('shop'));
+        $categories = Categorie::all()->pluck('title','id');
+        return view('shops.edit', compact('shop','categories'));
     }
 
     /**
@@ -113,6 +113,7 @@ class ShopController extends Controller
         $shop->description = $request->input('description');
         $shop->lat = $request->input('lat');
         $shop->lng = $request->input('lng');
+        $shop->categorie_id = $request['categorie'];
         $shop->save();
 
     //Display a successful message upon save
@@ -131,7 +132,7 @@ class ShopController extends Controller
     {
         $shop->delete();
 
-        return redirect()->route('posts.index')
+        return redirect()->route('shops.index')
             ->with('flash_message',
              'shop successfully deleted');
 

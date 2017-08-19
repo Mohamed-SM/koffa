@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddLocationToShop extends Migration
+class AddLastnameAndPhoneToUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddLocationToShop extends Migration
      */
     public function up()
     {
-        Schema::table('shops', function($table) {
-            $table->string('lat')->nullable();
-            $table->string('lng')->nullable();
+        Schema::table('users', function($table) {
+            $table->string('last_name')->nullable();
+            $table->string('phone')->nullable();
         });
     }
     /**
@@ -25,9 +25,9 @@ class AddLocationToShop extends Migration
      */
     public function down()
     {
-        Schema::table('shops', function($table) {
-            $table->dropColumn('lat');
-            $table->dropColumn('lng');
+        Schema::table('users', function($table) {
+            $table->dropColumn('last_name');
+            $table->dropColumn('phone');
         });
     }
 }

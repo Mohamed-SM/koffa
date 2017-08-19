@@ -14,6 +14,11 @@
             {{ Form::label('title', 'Title') }}
             {{ Form::text('title', null, array('class' => 'form-control')) }}<br>
 
+            <div class="form-group">
+            {{ Form::label('categorie', 'Categorie') }}
+            {{ Form::select('categorie', $categories, null, ['id'=> 'categorie', 'placeholder' => 'Categories ...' , 'class' => 'form-control']) }}
+            </div>
+
             {{ Form::label('address', 'Address') }}
             {{ Form::text('address', null, array('class' => 'form-control')) }}<br>
 
@@ -34,12 +39,26 @@
     </div>
 </div>
 <script type="text/javascript">
+    @if($shop->lat == null);
     var map = new GMaps({
       el: '#map',
       lat: 35.0,
       lng: 0.0,
       zoom:8
     });
+    @else
+    var map = new GMaps({
+      el: '#map',
+      lat: {{ $shop->lat }},
+      lng: {{ $shop->lng }},
+      zoom:12
+    });
+    map.addMarker({
+                lat: {{ $shop->lat }},
+                lng: {{ $shop->lng }},
+                title: '{{ $shop->title }}'
+            });
+    @endif
     map.setContextMenu({
       control: 'map',
       options: [{

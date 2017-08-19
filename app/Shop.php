@@ -19,4 +19,9 @@ class Shop extends Model
     {
         return $this->hasOne(Location::class);
     }
+
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class);
+    }
 }

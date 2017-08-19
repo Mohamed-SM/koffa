@@ -19,8 +19,18 @@
     </div>
 
     <div class="form-group">
+        {{ Form::label('last_name', 'prenom') }}
+        {{ Form::text('last_name', null, array('class' => 'form-control')) }}
+    </div>
+
+    <div class="form-group">
         {{ Form::label('email', 'Email') }}
         {{ Form::email('email', null, array('class' => 'form-control')) }}
+    </div>
+
+    <div class="form-group">
+        {{ Form::label('phone', 'Phone') }}
+        {{ Form::text('phone', null, array('class' => 'form-control')) }}
     </div>
 
     <h5><b>Give Role</b></h5>

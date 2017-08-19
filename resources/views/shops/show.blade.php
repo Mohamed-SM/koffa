@@ -8,12 +8,15 @@
 
     <h1>{{ $shop->title }}</h1>
     <br>
-    <h3>Owner : {{ $shop->user->name }}</h3>
+    @if($shop->categorie)
+    <p>{{ $shop->categorie->title }}</p>
+    @endif
+    <h3>Owner : {{ $shop->user->name.' '. $shop->user->last_name }}</h3>
+    <p>{{ $shop->user->phone }}</p>
     <p>Adress : {{ $shop->address }}</p>
-    <p>Cordonnée : {{ $shop->lat.",".$shop->lat }}</p>
+    <p>Cordonnée : {{ $shop->lat.",".$shop->lng }}</p>
     <hr>
     <p class="lead">{{ $shop->description }} </p>
-    <hr>
     <div id="map"></div>
     <hr>
     {!! Form::open(['method' => 'DELETE', 'route' => ['shops.destroy', $shop->id] ]) !!}

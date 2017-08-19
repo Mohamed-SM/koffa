@@ -16,7 +16,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Date/Time Added</th>
+                    <th>Phone number</th>
                     <th>User Roles</th>
                     <th>Operations</th>
                 </tr>
@@ -26,9 +26,9 @@
                 @foreach ($users as $user)
                 <tr>
 
-                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->name .' '.$user->last_name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->created_at->format('F d, Y h:ia') }}</td>
+                    <td>{{ $user->phone }}</td>
                     <td>{{ $user->roles()->pluck('name')->implode(' ') }}</td>
                     {{-- Retrieve array of roles associated to a user and convert to string --}}
                     <td>
