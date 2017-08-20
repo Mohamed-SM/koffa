@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Shop;
+use App\User;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $shops = Shop::all();
+        return view('home',compact('shops'));
     }
 }

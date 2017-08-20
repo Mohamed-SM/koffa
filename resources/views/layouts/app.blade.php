@@ -43,7 +43,6 @@
         #map {
             border:5px solid white;
             width: 100%;
-            height: 500px;
         }
 
     </style>
@@ -99,7 +98,10 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span>{{ Auth::user()->name }}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span>{{ Auth::user()->name }} {{ Auth::user()->last_name }}</span>
+                                <i class="icon-submenu lnr lnr-chevron-down"></i>
+                            </a>
                             <ul class="dropdown-menu">
                                 @role('Admin')
                                 <li><a href="#"><i class="lnr lnr-lock"></i> <span>Admin</span></a></li>
