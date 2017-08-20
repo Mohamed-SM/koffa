@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
-
 <head>
     <title>{{ config('app.name', 'Laravel') }}
     @yield('title')

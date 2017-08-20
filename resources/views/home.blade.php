@@ -6,8 +6,8 @@
                     <!-- OVERVIEW -->
                     <div class="panel panel-headline">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Weekly Overview</h3>
-                            <p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
+                            <h3 class="panel-title">Aperçu total</h3>
+                            <p class="panel-subtitle">{{Carbon\Carbon::now()->format('d M Y')}}</p>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -15,7 +15,7 @@
                                     <div class="metric">
                                         <span class="icon"><i class="fa fa-shopping-basket"></i></span>
                                         <p>
-                                            <span class="number">1,252</span>
+                                            <span class="number">{{ count($koffas)}} </span>
                                             <span class="title">Koffa</span>
                                         </p>
                                     </div>
@@ -40,10 +40,10 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="metric">
-                                        <span class="icon"><i class="fa fa-bar-chart"></i></span>
+                                        <span class="icon"><i class="fa fa-users"></i></span>
                                         <p>
-                                            <span class="number">35%</span>
-                                            <span class="title">Conversions</span>
+                                            <span class="number">{{count($users)}} </span>
+                                            <span class="title">Utilisateurs</span>
                                         </p>
                                     </div>
                                 </div>

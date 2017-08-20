@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Shop;
 use App\User;
+use App\Service;
 class HomeController extends Controller
 {
     /**
@@ -25,6 +26,8 @@ class HomeController extends Controller
     public function index()
     {
         $shops = Shop::all();
-        return view('home',compact('shops'));
+        $users = User::all();
+        $koffas = Service::where('type','koffa')->get();
+        return view('home',compact('shops','users','koffas'));
     }
 }
