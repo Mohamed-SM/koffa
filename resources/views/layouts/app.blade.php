@@ -88,16 +88,8 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Basic Use</a></li>
-                                <li><a href="#">Working With Data</a></li>
-                                <li><a href="#">Security</a></li>
-                                <li><a href="#">Troubleshooting</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="http://cssm.edu.jm/data/files/businessman.png"  class="img-circle" alt="Avatar">
                                 <span>{{ Auth::user()->name }} {{ Auth::user()->last_name }}</span>
                                 <i class="icon-submenu lnr lnr-chevron-down"></i>
                             </a>
@@ -105,9 +97,10 @@
                                 @role('Admin')
                                 <li><a href="#"><i class="lnr lnr-lock"></i> <span>Admin</span></a></li>
                                 @endrole
-                                <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+                                <li><a href="{{ route('users.show',Auth::user()->id) }}"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
                                 <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
                                 <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
+                                <li><a href="#"><i class="lnr lnr-question-circle"></i> <span>help</span></a></li>
                                 <li><a href="href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="lnr lnr-exit"></i> <span>Logout</span></a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}

@@ -83,7 +83,8 @@ class UserController extends Controller {
     * @return \Illuminate\Http\Response
     */
     public function show($id) {
-        return redirect('users'); 
+        $user = User::findOrFail($id);
+        return view('users.show', compact('user')); 
     }
 
     /**
@@ -132,7 +133,7 @@ class UserController extends Controller {
         else {
             $user->roles()->detach(); //If no role is selected remove exisiting role associated to a user
         }
-        return redirect()->route('users.index')
+        return redirect()->route('users.show',$user->id)
             ->with('flash_message',
              'User successfully edited.');
     }
