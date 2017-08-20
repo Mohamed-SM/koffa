@@ -2,7 +2,9 @@
 <html lang="{{ config('app.locale') }}">
 
 <head>
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}
+    @yield('title')
+    </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -39,7 +41,7 @@
     <!--style-->
     <style type="text/css">
         #map {
-            border:2px solid white;
+            border:5px solid white;
             width: 100%;
             height: 500px;
         }
