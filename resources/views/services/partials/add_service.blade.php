@@ -1,3 +1,4 @@
+<li id="koffa{{$service->id}}">
 @if($service->status == "pas pret")
 <i class="fa fa-clock-o activity-icon"></i>
 @else
@@ -22,10 +23,11 @@ onclick="pret({{$service->id}})"
 @if($service->status == "pret")
 @if(Auth::user()->hasRole('Member') or Auth::user()->hasRole('Admin'))
 <button type="button" class="btn btn-success btn-xs" onclick="delever({{$service->id}})"
-@if($service->status == "delever") 
-disabled="disabled"
-@endif
-><i class="fa fa-hand-rock-o"></i> Delevré</button>
+    @if($service->status == "delever") 
+    disabled="disabled"
+    @endif
+    ><i class="fa fa-hand-rock-o"></i> Delevré</button>
 @endif
 @endif
 </p>
+</li>

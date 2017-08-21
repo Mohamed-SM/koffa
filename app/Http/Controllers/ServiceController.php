@@ -14,7 +14,8 @@ use App\User;
 class ServiceController extends Controller
 {
     public function __construct() {
-        $this->middleware(['auth', 'clearance'])->except('index', 'show');
+        $this->middleware('auth');
+        $this->middleware('clearance')->except('index', 'show');
     }
     /**
      * Display a listing of the resource.
@@ -101,7 +102,7 @@ class ServiceController extends Controller
 
         $service->status = "pret" ;
         $service->save();
-        return view('services.partials.add_service', compact('service'));
+        return view('services.partials.update_service', compact('service'));
     }
 
     public function delever(Request $request, Service $service)
@@ -109,7 +110,7 @@ class ServiceController extends Controller
 
         $service->status = "delever" ;
         $service->save();
-        return view('services.partials.add_service', compact('service'));
+        return view('services.partials.update_service', compact('service'));
     }
 
     /**
