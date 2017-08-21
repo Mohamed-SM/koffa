@@ -28,6 +28,7 @@
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset('assets/scripts/klorofil-common.js') }}"></script>
+    <script src="{{ asset('js/notify.min.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5N2JGcG6Xty2TWmAjyaz_0ILtq7F1vKo" type="text/javascript"></script>
     <script src="{{ asset('js/gmaps.js') }}"></script>
 
@@ -54,7 +55,7 @@
         <!-- NAVBAR -->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="brand">
-                <a href="index.html"><img src="{{ asset('assets/img/logo-dark.png') }}" alt="Klorofil Logo" class="img-responsive logo"></a>
+                <a href="/"><img src="{{ asset('assets/img/logo-dark.png') }}" alt="Klorofil Logo" class="img-responsive logo"></a>
             </div>
             <div class="container-fluid">
                 <div class="navbar-btn">
@@ -142,22 +143,10 @@
         </div>
         <!-- END LEFT SIDEBAR -->
         <!-- MAIN -->
-        <div class="main">
-            <!-- MAIN CONTENT ahlem nebghik -->
-            @if(Session::has('flash_message'))
-                <div class="container">      
-                    <div class="alert alert-success"><em> {!! session('flash_message') !!}</em>
-                    </div>
-                </div>
-            @endif 
+        <div class="main"> 
 
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">              
-                    @include ('errors.list') {{-- Including error file --}}
-                </div>
-            </div>
-            @yield('content')
-            <!-- END MAIN CONTENT -->
+        @yield('content')
+        
         </div>
         <!-- END MAIN -->
         <div class="clearfix"></div>
@@ -168,7 +157,17 @@
         </footer>
     </div>
     <!-- END WRAPPER -->
-
+    @include ('errors.list')
+    @if(Session::has('flash_message'))
+    <script type="text/javascript">
+        $.notify({
+            message: '{!! session('flash_message') !!}'
+        },{
+            type: 'success',
+            offset: 90
+        });
+    </script>
+    @endif
     
     <script type="text/javascript">
         $(document).ready(function(){

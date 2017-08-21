@@ -23,7 +23,9 @@ class ShopController extends Controller
     public function index()
     {
         $shops = Shop::paginate(5); //show only 5 items at a time in descending order
-        return view('shops.index', compact('shops'));
+        $map_shops = Shop::all();
+
+        return view('shops.index', compact('shops','map_shops'));
     }
 
     /**
@@ -78,7 +80,9 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
-        return view ('shops.show', compact('shop'));
+        $prets = Service::where('status','pret')->where('shop_id',$shop->id)->get();
+        $pasPrets = Service::where('status','pas pret')->where('shop_id',$shop->id)->get();
+        return view ('shops.show', compact('shop','pasPrets','prets'));
     }
 
     /**
@@ -119,8 +123,7 @@ class ShopController extends Controller
 
     //Display a successful message upon save
         return redirect()->route('shops.show',compact('shop'))
-            ->with('flash_message', 'Shop,
-             '. $shop->title.' updated');
+            ->with('flash_message', 'Shop,'. $shop->title.' updated');
     }
 
     /**

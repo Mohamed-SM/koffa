@@ -101,7 +101,15 @@ class ServiceController extends Controller
 
         $service->status = "pret" ;
         $service->save();
-        return view('services.partials.update_service', compact('service'));
+        return view('services.partials.add_service', compact('service'));
+    }
+
+    public function delever(Request $request, Service $service)
+    {
+
+        $service->status = "delever" ;
+        $service->save();
+        return view('services.partials.add_service', compact('service'));
     }
 
     /**

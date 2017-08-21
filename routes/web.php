@@ -31,3 +31,4 @@ Route::resource('categories', 'CategorieController');
 
 Route::resource('services', 'ServiceController');
 
+Route::put('/delever/{service}','ServiceController@delever');
