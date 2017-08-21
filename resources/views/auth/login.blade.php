@@ -67,8 +67,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="right" style="background-image: url("../../assets/img/login-bg.jpg");
-background-repeat: no-repeat;">
+                    <div class="right">
                         <div class="overlay"></div>
                         <div class="content text">
                             <h1 class="heading">Koffa application de gestion</h1>
