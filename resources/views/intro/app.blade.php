@@ -68,7 +68,11 @@
                   <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{ url('/') }}">Home</a></li>
                     <li><a href="{{ url('/contact') }}">Contact</a></li>
+                    @if (Auth::guest())
                     <li><a href="{{ route('login') }}">Login</a></li>
+                    @else
+                    <li><a href="{{ route('home') }}">Dashboard</a></li>
+                    @endif
                   </ul>
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
