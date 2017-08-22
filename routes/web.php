@@ -36,3 +36,11 @@ Route::resource('categories', 'CategorieController');
 Route::resource('services', 'ServiceController');
 
 Route::put('/delever/{service}','ServiceController@delever');
+
+Route::resource('clinics', 'ClinicController');
+
+Route::resource('clients', 'ClientController');
+
+Route::resource('students', 'StudentController');
+
+Route::resource('schools', 'SchoolController');

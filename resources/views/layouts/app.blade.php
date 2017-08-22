@@ -121,8 +121,10 @@
                 <nav>
                     <ul class="nav">
                         <li><a href="{{ url('/home') }}" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-                        <li><a href="{{ route('shops.index') }}" class=""><i class="lnr lnr-code"></i> <span>Shops</span></a></li>
-                        <li><a href="{{ route('users.index') }}" class=""><i class="lnr lnr-chart-bars"></i> <span>Users</span></a></li>
+                        <li><a href="{{ route('shops.index') }}" class=""><i class="lnr lnr-store"></i> <span>Shops</span></a></li>
+                        <li><a href="{{ route('clinics.index') }}" class=""><i class="lnr lnr-heart-pulse"></i> <span>Clinics</span></a></li>
+                        <li><a href="{{ route('schools.index') }}" class=""><i class="lnr lnr-graduation-hat"></i> <span>Ecoles</span></a></li>
+                        <li><a href="{{ route('users.index') }}" class=""><i class="lnr lnr-users"></i> <span>Users</span></a></li>
                         </span></a></li>
                         <li>
                             <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
