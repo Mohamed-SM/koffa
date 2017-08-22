@@ -5,7 +5,7 @@
 @section('content')
 <div class="main-content">
     <div class="container-fluid">
-        <div class="panel panel-profile" style="min-height: 520px">
+        <div class="panel panel-profile" style="min-height: 700px">
             <div class="clearfix">
                 <!-- LEFT COLUMN -->
                 <div class="profile-left">

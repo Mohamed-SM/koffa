@@ -8,7 +8,7 @@
         <div class="panel">
             <div class="panel-body">
                 <div class="panel-heading">
-                    Page {{ $shops->currentPage() }} of {{ $shops->lastPage() }}
+                    Shops
                 </div>
                 
                 <div class="custom-tabs-line tabs-line-bottom left-aligned">
@@ -16,12 +16,16 @@
                         <li class="active"><a href="#tab-bottom-left1" role="tab" data-toggle="tab">Shops Mape</a></li>
                         <li><a href="#tab-bottom-left2" role="tab" data-toggle="tab">Shops List</a></li>
                     </ul>
+                    @if(Auth::user()->hasRole('Admin') or Auth::user()->hasRole('Owner'))
+                    <a href="{{ route('shops.create') }} " class="btn btn-primary pull-right" >Nouvelle Shop</a>
+                    @endif
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="tab-bottom-left1">
                         <div id="map" style="height: 500px;"></div>                        
                     </div>
                     <div class="tab-pane fade" id="tab-bottom-left2">
+                        Page {{ $shops->currentPage() }} of {{ $shops->lastPage() }}
                         @foreach ($shops as $shop)
                         <div class="panel-body">
                             <li style="list-style-type:disc">
