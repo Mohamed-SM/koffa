@@ -1,0 +1,2 @@
+<?php $class = $thread->isUnread(Auth::id()) ? 'bg-success' : 'bg-default'; ?>
+<li><a href="{{ route('messages.show', $thread->id) }}" class="notification-item"><span class="dot {{ $class }}"></span><b>{{ $thread->latestMessage->user->name }} : </b>{{ $thread->subject }}</a></li>
