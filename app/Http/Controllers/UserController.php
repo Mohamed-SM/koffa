@@ -17,7 +17,8 @@ use Session;
 class UserController extends Controller {
 
     public function __construct() {
-        $this->middleware(['auth', 'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
+        $this->middleware('auth');
+        $this->middleware('clearance')->except('index', 'show');
     }
 
     /**
@@ -57,6 +58,9 @@ class UserController extends Controller {
         ]);
 
         $user = User::create($request->only('email', 'name', 'password')); //Retrieving only the email and password data
+        $user->last_name = $request['last_name'];
+        $user->phone = $request['phone'];
+        $user->save();
 
         $roles = $request['roles']; //Retrieving the roles field
     //Checking if a role was selected
@@ -80,7 +84,8 @@ class UserController extends Controller {
     * @return \Illuminate\Http\Response
     */
     public function show($id) {
-        return redirect('users'); 
+        $user = User::findOrFail($id);
+        return view('users.show', compact('user')); 
     }
 
     /**
@@ -111,11 +116,17 @@ class UserController extends Controller {
         $this->validate($request, [
             'name'=>'required|max:120',
             'email'=>'required|email|unique:users,email,'.$id,
-            'password'=>'required|min:6|confirmed'
         ]);
-        $input = $request->only(['name', 'email', 'password']); //Retreive the name, email and password fields
+        $input = $request->only(['name', 'email']); //Retreive the name, email and password fields
         $roles = $request['roles']; //Retreive all roles
         $user->fill($input)->save();
+        if($request['password']){
+           $this->validate($request, ['password'=>'required|min:6|confirmed']);
+           $user->password = $request['password']; 
+        }
+        $user->last_name = $request['last_name'];
+        $user->phone = $request['phone'];
+        $user->save();        
 
         if (isset($roles)) {        
             $user->roles()->sync($roles);  //If one or more role is selected associate user to roles          
@@ -123,7 +134,7 @@ class UserController extends Controller {
         else {
             $user->roles()->detach(); //If no role is selected remove exisiting role associated to a user
         }
-        return redirect()->route('users.index')
+        return redirect()->route('users.show',$user->id)
             ->with('flash_message',
              'User successfully edited.');
     }

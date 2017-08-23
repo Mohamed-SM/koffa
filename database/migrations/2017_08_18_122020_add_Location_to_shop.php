@@ -27,7 +27,7 @@ class AddLocationToShop extends Migration
     {
         Schema::table('shops', function($table) {
             $table->dropColumn('lat');
-            $table->dropColumn('lngo');
+            $table->dropColumn('lng');
         });
     }
 }
