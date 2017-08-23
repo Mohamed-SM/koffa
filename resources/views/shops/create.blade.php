@@ -1,46 +1,72 @@
 @extends('layouts.app')
 
-@section('title', '| Create New Shop')
+@section('title', '| Nouvelle Shop')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-
-        <h1>Create New Shop</h1>
-        <hr>
-
-    {{-- Using the Laravel HTML Form Collective to create our form --}}
-        {{ Form::open(array('route' => 'shops.store')) }}
-
-            <div class="form-group">
-            {{ Form::label('title', 'Title') }}
-            {{ Form::text('title', null, array('class' => 'form-control')) }}
-            <br>
-
-            <div class="form-group">
-            {{ Form::label('categorie', 'Categorie') }}
-            {{ Form::select('categorie', $categories, null, ['id'=> 'categorie', 'placeholder' => 'Categories ...' , 'class' => 'form-control']) }}
+<div class="main-content">
+    <div class="container-fluid">
+        <!-- INPUTS -->
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Information de Shop</h3>
             </div>
+            <div class="panel-body">
+                {{ Form::open(array('route' => 'shops.store','class' => 'form-horizontal')) }}
+                    <div class="form-group">
+                        {{ Form::label('title', 'Title' , array('class' => 'control-label col-sm-2') ) }}
+                        <div class="col-sm-10">
+                            {{ Form::text('title', null, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
 
-            {{ Form::label('address', 'Address') }}
-            {{ Form::text('address', null, array('class' => 'form-control')) }}
-            <br>
+                    <div class="form-group">
+                    {{ Form::label('categorie', 'Categorie' ,array('class' => 'control-label col-sm-2')) }}
+                    <div class="col-sm-10">
+                    {{ Form::select('categorie', $categories, null, ['id'=> 'categorie', 'placeholder' => 'Categories ...' , 'class' => 'form-control']) }}
+                    </div>
+                    </div>
 
-            {{ Form::label('description', 'shop description') }}
-            {{ Form::textarea('description', null, array('class' => 'form-control')) }}
-            <br>
-            {{ Form::label('lat', 'Altitud') }}
-            {{ Form::text('lat', null, array('class' => 'form-control')) }}<br>
-            {{ Form::label('lng', 'Longitud') }}
-            {{ Form::text('lng', null, array('class' => 'form-control')) }}<br>
-            <hr>
-            <div id="map"></div>
-            <hr>
-            {{ Form::submit('Create shop', array('class' => 'btn btn-success btn-lg btn-block')) }}
-            {{ Form::close() }}
+                    <div class="form-group">
+                        {{ Form::label('address', 'Address' , array('class' => 'control-label col-sm-2') ) }}
+                        <div class="col-sm-10">
+                            {{ Form::text('address', null, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label('description', 'description' , array('class' => 'control-label col-sm-2') ) }}
+                        <div class="col-sm-10">
+                            {{ Form::textarea('description', null, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        {{ Form::label('lat', 'Cordoneées' , array('class' => 'control-label col-sm-2') ) }}
+                        <div class="col-sm-5">
+                            {{ Form::text('lat', null, array('class' => 'form-control')) }}
+                        </div>
+                        <div class="col-sm-5">
+                            {{ Form::text('lng', null, array('class' => 'form-control' , 'id' => 'lng')) }}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div id="map" style="height: 400px;"></div>
+                    </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                    {{ Form::submit('Enrg', array('class' => 'btn btn-primary')) }}
+                    </div>
+                    </div>
+                {{ Form::close() }}
+            </div>
         </div>
-        </div>
+        <!-- END INPUTS -->
     </div>
+</div>
 <script type="text/javascript">
     var map = new GMaps({
       el: '#map',
@@ -60,7 +86,6 @@
             this.addMarker({
                 lat: e.latLng.lat(),
                 lng: e.latLng.lng(),
-                title: $("title").text(),
             });
         }
       }]
