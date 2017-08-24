@@ -10,6 +10,9 @@
         <div class="panel">
             <div class="panel-heading">
                 <h3 class="panel-title">Tout les utilisateurs</h3>
+                @if(Auth::user()->hasRole('Admin'))
+                <a href="{{ route('users.create') }}" class="btn btn-primary pull-right" >Nouvelle Clinic</a>
+                @endif
             </div>
             <div class="panel-body">
             <div class="table-responsive">

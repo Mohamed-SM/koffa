@@ -74,6 +74,7 @@
             </div>
 
             <script type="text/javascript">
+                @if (count($shops))
                 var map = new GMaps({
                     el: '#map',
                     lat: {{ $shops[2]->lat }},
@@ -102,5 +103,13 @@
                     }
                 });
                 @endforeach
+                @else
+                var map = new GMaps({
+                    el: '#map',
+                    lat: 35,
+                    lng: 0,
+                    zoom:9
+                });
+                @endif
             </script>
 @endsection
