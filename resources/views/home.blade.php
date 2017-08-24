@@ -77,15 +77,14 @@
                 @if (count($shops))
                 var map = new GMaps({
                     el: '#map',
-                    lat: {{ $shops[2]->lat }},
-                    lng: {{ $shops[2]->lng }},
-                    zoom:16
+                    lat: {{ $shops[0]->lat }},
+                    lng: {{ $shops[0]->lng }},
+                    zoom:14
                 });
                 @foreach($shops as $shop)
                 map.addMarker({
                     lat: {{ $shop->lat }},
                     lng: {{ $shop->lng }},
-                    icon : "{{ asset('/map_pins/shop.png')}}",
                     title: '{{ $shop->title }}',
                     infoWindow: {
                         content: '<div><p><span class="lnr lnr-map-marker"></span> <b>{{ $shop->title }}</b> : {{ $shop->address }}</p><p><span class="lnr lnr-user"></span> {{ $shop->user->name }} {{ $shop->user->last_name }}</p><p><span class="lnr lnr-phone-handset"></span> {{ $shop->user->phone }}</p><div class="text-center"><a href="{{ route('shops.show', $shop->id ) }}" class="btn btn-primary">Voir</a></div></div>'
@@ -96,7 +95,6 @@
                 map.addMarker({
                     lat: {{ $clinic->lat }},
                     lng: {{ $clinic->lng }},
-                    icon : "{{ asset('/map_pins/clinic.png')}}",
                     title: '{{ $clinic->title }}',
                     infoWindow: {
                         content: '<div><p><span class="lnr lnr-map-marker"></span> <b>{{ $clinic->title }}</b> : {{ $clinic->address }}</p><p><span class="lnr lnr-user"></span> Dr. {{ $clinic->user->name }} {{ $clinic->user->last_name }}</p><p><span class="lnr lnr-phone-handset"></span> {{ $clinic->user->phone }}</p><div class="text-center"><a href="{{ route('shops.show', $clinic->id ) }}" class="btn btn-primary">Voir</a></div></div>'
